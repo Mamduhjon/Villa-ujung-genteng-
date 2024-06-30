@@ -1,0 +1,36 @@
+document.getElementById('search-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    let query = document.getElementById('search').value.toLowerCase();
+    let villaItems = document.getElementsByClassName('villa-item');
+
+    for (let item of villaItems) {
+        let villaName = item.getElementsByTagName('h3')[0].innerText.toLowerCase();
+        if (villaName.includes(query)) {
+            item.style.display = 'block';
+        } else {
+            item.style.display = 'none';
+        }
+    }
+});
+
+document.getElementById('contact-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    alert('Terima kasih telah menghubungi kami!');
+    this.reset();
+});
+
+// Dummy data for villa listing
+let villas = [
+    { name: 'Villa A', description: 'Villa dengan pemandangan laut.', price: '2,000,000 IDR per malam' },
+    { name: 'Villa B', description: 'Villa di pegunungan.', price: '1,500,000 IDR per malam' },
+    { name: 'Villa C', description: 'Villa di tengah kota.', price: '2,500,000 IDR per malam' },
+];
+
+let villaList = document.getElementById('villa-list');
+
+villas.forEach(villa => {
+    let villaItem = document.createElement('div');
+    villaItem.className = 'villa-item';
+    villaItem.innerHTML = `<h3>${villa.name}</h3><p>${villa.description}</p><p>${villa.price}</p>`;
+    villaList.appendChild(villaItem);
+});
